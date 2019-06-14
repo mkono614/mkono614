@@ -1,28 +1,32 @@
+// service-worker.js
+self.addEventListener('install', function(e) {
+  console.log('[ServiceWorker] Install');
+});
 
+self.addEventListener('activate', function(e) {
+  console.log('[ServiceWorker] Activate');
+});
 
-self.addEventListener("push", function(event) {
-  event.waitUntil(
-    self.registration.pushManager.getSubscription()
-      .then(function(subscription) {
-        if (subscription) {
-          return subscription.endpoint
-        }
-        throw new Error('User not subscribed')
-    })
-    .then(function(res) {
-      return fetch('/notifications.json')
-    })
-    .then(function(res) {
-      if (res.status === 200) {
-        return res.json()
-      }
-      throw new Error('notification api response error')
-    })
-    .then(function(res) {
-      return self.registration.showNotification(res.title, {
-        icon: '/icon-192.png',
-        body: res.body
-      })
-    })
-  )
-})
+self.addEventListener('fetch', function (event) {
+    event.respondWith(
+      new Response('サービスワーカーが動いています！')
+    );
+});
+
+self.addEventListener('push', function (event) {
+    console.log('Received a push message', event);
+    var title = "プッシュ通知です！";
+    var body = "プッシュ通知はこのようにして送られるのです";
+
+    event.waitUntil(
+        self.registration.showNotification(title, {
+            body: body,
+            icon: 'http://free-images.gatag.net/images/201108090000.jpg',
+            tag: 'push-notification-tag'
+        })
+    );
+});
+self.addEventListener('notificationclick', function (event) {
+    event.notification.close();
+    clients.openWindow("/");
+}, false);
