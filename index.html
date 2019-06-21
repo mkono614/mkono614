@@ -1,45 +1,49 @@
-<!DOCTYPE html>
+<!-- index.html -->
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RSS Reader</title>
-  <link rel="stylesheet" type="text/css" href="styles/app.css">
-  <link rel="manifest" href="/manifest.json">
+  <!-- manifest.jsonÇåƒÇ—èoÇµÇƒÇ¢Ç‹Ç∑ -->
+  <link rel="manifest" href="./manifest.json">
+  <script>
+window.addEventListener('load', function() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register("./service-worker.js")
+      .then(function(registration) {
+        return registration.pushManager.getSubscription().then(function(subscription) {
+          if (subscription) {
+            return subscription
+          }
+          return registration.pushManager.subscribe({
+            userVisibleOnly: true
+          })
+        })
+      }).then(function(subscription) {
+        console.log("pushManager endpoint:", subscription.endpoint) 
+      }).catch(function(error) {
+        console.warn("serviceWorker error:", error)
+      })
+  }
+});
+</script>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title>Hello PWA.</title>
+  <style>
+    body {
+      text-align:center;
+      font-size: 40px;
+      vertical-align: middle;
+    }
+    .image {
+      width: 80%; 
+      margin: auto;
+      display: block;
+    }
+  </style>
 </head>
 <body>
-
-  <header class="app-header">
-    <h1 class="header-title">RSS Reader</h1>
-    <button type="button" id="selectButton" class="header-button"><img src="images/rss24.png"></button>
-    <button type="button" id="reloadButton" class="header-button"><img src="images/reload24.png"></button>
-  </header>
-
-  <main class="app-main">
-    <div class="content-row">
-      <div id="content"></div>
-    </div>
-  </main>
-
-  <div id="urlDialog" class="dialog">
-    <div class="dialog-content">
-      <div class="dialog-header">
-        <span class="close-button" id="closeDialog">&times;</span>
-        <h3>Ë°®Á§∫„Åó„Åü„ÅÑ„Éï„Ç£„Éº„Éâ„ÅÆURL„ÇíÂÖ•ÂäõÔºèÈÅ∏Êäû</h3>
-      </div>
-      <div class="dialog-body">
-        <div class="inline-elements">
-          <label class="input-label" >URL</label>
-          <input id="urlInput" class="input-body" type="url" placeholder="„Éï„Ç£„Éº„Éâ„ÅÆURL„ÇíÂÖ•Âäõ">
-          <button type="button" id="urlButton" class="input-button">Get</button>
-        </div>
-        <select id="feedSelect" class="dialog-select">
-        </select>
-      </div>
-    </div>
-  </div>
-
-  <script src="scripts/app.js" async></script>
-
+  <h1>Hello PWA.</h1>
+  <p>ÉvÉbÉVÉÖÇ∑ÇÈÇ©ÉeÉXÉg</p>
+  <img src="./pwa-logo.svg" alt="PWA logo" class="image" />
+  <a href="p.html">p.html</a>
 </body>
 </html>
