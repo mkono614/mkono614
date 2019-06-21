@@ -1,32 +1,50 @@
+/*
+*
+*  Push Notifications codelab
+*  Copyright 2015 Google Inc. All rights reserved.
+*
+*  Licensed under the Apache License, Version 2.0 (the "License");
+*  you may not use this file except in compliance with the License.
+*  You may obtain a copy of the License at
+*
+*      https://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*  distributed under the License is distributed on an "AS IS" BASIS,
+*  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*  See the License for the specific language governing permissions and
+*  limitations under the License
+*
+*/
 
-// ServiceWorker処理：https://developers.google.com/web/fundamentals/primers/service-workers/?hl=ja
+/* eslint-env browser, serviceworker, es6 */
 
-// キャッシュ名とキャッシュファイルの指定
-var CACHE_NAME = 'pwa-sample-caches';
-var urlsToCache = [
-	'/pwa/',
-	'/pwa/css/style.css',
-	'/pwa/drawer.js'
-];
+'use strict';
 
-// インストール処理
-self.addEventListener('install', function(event) {
-	event.waitUntil(
-		caches
-			.open(CACHE_NAME)
-			.then(function(cache) {
-				return cache.addAll(urlsToCache);
-			})
-	);
+self.addEventListener('push', function(event) {
+  console.log('[Service Worker] Push Received.');
+  console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
+
+  const title = 'プッシュ通知タイトル';
+  const options = {
+    body: 'プッシュ通知の本体テストです',
+    icon: 'images/icon.png',
+    badge: 'images/badge.png'
+  };
+
+  event.waitUntil(self.registration.showNotification(title, options));
 });
 
-// リソースフェッチ時のキャッシュロード処理
-self.addEventListener('fetch', function(event) {
-	event.respondWith(
-		caches
-			.match(event.request)
-			.then(function(response) {
-				return response ? response : fetch(event.request);
-			})
-	);
+/* ------------------------------------------ */
+
+self.addEventListener('notificationclick', function(event) {
+  console.log('[Service Worker] Notification click Received.');
+
+  event.notification.close();
+
+  event.waitUntil(
+    clients.openWindow('https://www.google.com/')/*通知をクリックした後に開くURL*/
+  );
 });
+
+/* -------------------------------------------- */
