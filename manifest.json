@@ -1,6 +1,6 @@
 {
-  "name": "Temperature Converter",
-  "short_name": "Temp Converter",
+  "name": "RSS Reader",
+  "short_name": "RSS Reader",
   "icons": [{
     "src": "icons/icon-128x128.png",
       "sizes": "128x128",
@@ -24,6 +24,6 @@
     }],
   "start_url": "/index.html",
   "display": "standalone",
-  "background_color": "#BD913F",
-  "theme_color": "#916028"
+  "background_color": "#30B090",
+  "theme_color": "#808080"
 }
