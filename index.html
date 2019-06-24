@@ -3,7 +3,7 @@
 <head>
   <!-- manifest.jsonを呼び出しています -->
   <link rel="manifest" href="./manifest.json">
-  <script>
+ <!-- <script>
 window.addEventListener('load', function() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register("./service-worker.js")
@@ -23,7 +23,7 @@ window.addEventListener('load', function() {
       })
   }
 });
-</script>
+</script>-->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="blue">
   <title>Hello PWA.</title>
@@ -53,5 +53,30 @@ window.addEventListener('load', function() {
   <p>プッシュするかテスト</p>
   <img src="./pwa-logo.svg" alt="PWA logo" class="image" />
   <a href="p.html">p.html</a>
+  <p>
+    <input type="button" id="btnSubscribe" value="通知を許可する">
+    <input type="button" id="btnUnSubscribe" value="トークン削除" style="display:none;">
+</p>
+<p><input type="text" value="YOUR-INCETANCE-ID-TOKEN" id="textInstanceIdToken" style="width:100%;box-sizing:border-box;"></p>
+<div id="sendWebPushArea" style="display:none;">
+    <p>下記をコピーしてこのタブを閉じ、別ブラウザで見てください</p>
+    <input type="text" value="" id="sendWebPush" style="width:100%;box-sizing:border-box;">
+</div>
 </body>
+<script src="https://www.gstatic.com/firebasejs/5.5.4/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCMyAThwN2E7dqWkEfqipDuIPRd4RTcDZ8",
+    authDomain: "test-1fb7c.firebaseapp.com",
+    databaseURL: "https://test-1fb7c.firebaseio.com",
+    projectId: "test-1fb7c",
+    storageBucket: "test-1fb7c.appspot.com",
+    messagingSenderId: "835639234762",
+    appId: "1:835639234762:web:b42336c1c6df0765"
+  };
+  firebase.initializeApp(config);
+</script>
+<script src="main.js"></script>
+
 </html>

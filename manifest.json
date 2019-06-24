@@ -1,5 +1,5 @@
 {
-  "name": "正式名称　サービス",
+  "name": "G Suite てすと",
   "short_name": "G Suite",
   "background_color": "#97d2d6",
   "icons": [{
@@ -13,5 +13,5 @@
     }],
   "start_url": "./?utm_source=homescreen",
   "display": "standalone",
-    "gcm_sender_id": "835639234762"
+    "gcm_sender_id": "103953800507"
 }
