@@ -63,10 +63,15 @@ window.addEventListener('load', function() {
     <input type="text" value="" id="sendWebPush" style="width:100%;box-sizing:border-box;">
 </div>
 </body>
-<script src="https://www.gstatic.com/firebasejs/5.5.4/firebase.js"></script>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/6.2.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
 <script>
-  // Initialize Firebase
-  var config = {
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
     apiKey: "AIzaSyCMyAThwN2E7dqWkEfqipDuIPRd4RTcDZ8",
     authDomain: "test-1fb7c.firebaseapp.com",
     databaseURL: "https://test-1fb7c.firebaseio.com",
@@ -75,7 +80,8 @@ window.addEventListener('load', function() {
     messagingSenderId: "835639234762",
     appId: "1:835639234762:web:b42336c1c6df0765"
   };
-  firebase.initializeApp(config);
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
 </script>
 <script src="main.js"></script>
 
