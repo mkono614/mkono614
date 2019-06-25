@@ -1,12 +1,15 @@
-﻿<!-- index.html -->
+﻿<!DOCTYPE html>
+<!-- index.html -->
 <html>
+
 <head>
-  <!-- manifest.jsonを呼び出しています -->
-  <link rel="manifest" href="./manifest.json">
- <!-- <script>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="blue">
+    <link rel="manifest" href="/manifest.json">
+       <script>
 window.addEventListener('load', function() {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register("./service-worker.js")
+    navigator.serviceWorker.register("firebase-messaging-sw.js")
       .then(function(registration) {
         return registration.pushManager.getSubscription().then(function(subscription) {
           if (subscription) {
@@ -23,66 +26,74 @@ window.addEventListener('load', function() {
       })
   }
 });
-</script>-->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="blue">
-  <title>Hello PWA.</title>
-  <style>
-    body {
-      text-align:center;
-      font-size: 40px;
-      vertical-align: middle;
-        max-width: 1000px;
-        width: 100%;
-    }
-    .image {
-      width: 80%; 
-      margin: auto;
-      display: block;
-    }
-      @media screen and (min-width: 1000px) {
-          body {
-              max-width: 1000px;
-              margin: 0 auto;
-          }
-      }
-  </style>
-</head>
-<body>
-  <h1>Hello PWA.</h1>
-  <p>プッシュするかテスト</p>
-  <img src="./pwa-logo.svg" alt="PWA logo" class="image" />
-  <a href="p.html">p.html</a>
-  <p>
-    <input type="button" id="btnSubscribe" value="通知を許可する">
-    <input type="button" id="btnUnSubscribe" value="トークン削除" style="display:none;">
-</p>
-<p><input type="text" value="YOUR-INCETANCE-ID-TOKEN" id="textInstanceIdToken" style="width:100%;box-sizing:border-box;"></p>
-<div id="sendWebPushArea" style="display:none;">
-    <p>下記をコピーしてこのタブを閉じ、別ブラウザで見てください</p>
-    <input type="text" value="" id="sendWebPush" style="width:100%;box-sizing:border-box;">
-</div>
-</body>
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/6.2.2/firebase-app.js"></script>
+</script>
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
+    <title>Hello PWA.</title>
+    <style>
+        body {
+            text-align: center;
+            font-size: 40px;
+            vertical-align: middle;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .image {
+            width: 80%;
+            margin: auto;
+            display: block;
+        }
+
+        @media screen and (min-width: 1000px) {
+            body {
+                max-width: 1000px;
+                margin: 0 auto;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>Hello PWA.</h1>
+    <p>
+        <input type="button" id="btnSubscribe" value="通知を許可する">
+        <input type="button" id="btnUnSubscribe" value="トークン削除" style="display:none;">
+    </p>
+    <p><input type="text" value="YOUR-INCETANCE-ID-TOKEN" id="textInstanceIdToken" style="width:100%;box-sizing:border-box;"></p>
+    <div id="sendWebPushArea" style="display:none;">
+        <p>下記をコピーしてこのタブを閉じ、別ブラウザで見てください</p>
+        <input type="text" value="" id="sendWebPush" style="width:100%;box-sizing:border-box;">
+    </div>
+    <p>プッシュするかテスト</p>
+
+
+
+
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#config-web-app -->
 
-<script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyCMyAThwN2E7dqWkEfqipDuIPRd4RTcDZ8",
-    authDomain: "test-1fb7c.firebaseapp.com",
-    databaseURL: "https://test-1fb7c.firebaseio.com",
-    projectId: "test-1fb7c",
-    storageBucket: "test-1fb7c.appspot.com",
-    messagingSenderId: "835639234762",
-    appId: "1:835639234762:web:b42336c1c6df0765"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-</script>
-<script src="main.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCMyAThwN2E7dqWkEfqipDuIPRd4RTcDZ8",
+            authDomain: "test-1fb7c.firebaseapp.com",
+            databaseURL: "https://test-1fb7c.firebaseio.com",
+            projectId: "test-1fb7c",
+            storageBucket: "test-1fb7c.appspot.com",
+            messagingSenderId: "835639234762",
+            appId: "1:835639234762:web:b42336c1c6df0765"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+    </script>
+ 
+    <script src="main.js"></script>
+</body>
 
 </html>
