@@ -20,7 +20,7 @@ function requestPermission() {
             btnSubscribe.style.display = 'none';
             btnUnSubscribe.style.display = 'block';
             sendWebPushArea.style.display = 'block';
-            sendWebPush.value = 'https://andus.heteml.jp/firebase_cloud_messaging/send.php?id=' + token;
+            sendWebPush.value = 'https://mkono614.github.io/mkono614/send.php?id=' + token;
         }).catch(function(err) {
             textInstanceIdToken.value = 'トークンの取得に失敗しました（' + err + '）。';
         });
@@ -62,7 +62,7 @@ window.onload = function() {
             btnSubscribe.style.display = 'none';
             btnUnSubscribe.style.display = 'block';
             sendWebPushArea.style.display = 'block';
-            sendWebPush.value = 'https://andus.heteml.jp/firebase_cloud_messaging/send.php?id=' + currentToken;
+            sendWebPush.value = 'https://mkono614.github.io/mkono614/send.php?id=' + currentToken;
         } else {
             // トークン無い場合
             textInstanceIdToken.value = '通知の許可をしていません。「通知を許可する」を押してください。';
